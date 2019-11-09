@@ -12,19 +12,28 @@ import { appRoutingModule } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-
+;
+import { SidebarComponent } from './template/sidebar/sidebar.component'
+;
+import { NavbarComponent } from './template/navbar/navbar.component';
+import { MainComponent } from './main/main.component';
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
-    ],
+        LoginComponent,
+        SidebarComponent ,
+        NavbarComponent,
+        MainComponent,
+        NavbarComponent,
+        SidebarComponent
+     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
