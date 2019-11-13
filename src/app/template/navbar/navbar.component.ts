@@ -24,4 +24,7 @@ export class NavbarComponent  {
       this.authenticationService.logout();
       this.router.navigate(['/login']);
   }
+  navigateToProfile(){
+    this.router.navigate(['/in-login/profile']);
+  }
 }

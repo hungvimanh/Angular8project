@@ -1,1 +1,440 @@
-<p>register works!</p>
+<div class="container-fluid">
+    <div class="tittle mt-4">
+        <div class="tite">Phiếu đăng ký nguyện vọng</div>
+        <div>
+            <button class="btn btn-primary button-adde">Đăng ký</button>
+            <button class="btn btn-warning button-add"> Chờ duyệt</button>
+        </div>
+    </div>
+    <hr>
+    <button class="button-toggle" (click)="isOpenTab1 = !isOpenTab1">Thông tin cá nhân
+        <span><i class="fa " [ngClass]="!isOpenTab1 ? 'fa-caret-down' : 'fa-caret-up'"
+                style="float:right;padding-top: 3px;padding-left: 10px;"></i></span>
+    </button>
+    <div class="block" [ngClass]="{'show': isOpenTab1}">
+        <div class="row mt-3">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <div>
+                    <label for="name">Họ và Tên:</label>
+                    <div>
+                        <input type="text" disabled class="input-normal">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div>
+                    <label for="gender">Giới tính</label>
+                    <div class="flex mb-2">
+                        <div>
+                            <label for="male">Nam</label>
+                            <input type="radio" name="gender" class="ml-1">
+                        </div>
+                        <div class="ml-4">
+                            <label for="female">Nữ</label>
+                            <input type="radio" name="gender" class="ml-1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div>
+                    <label for="natio">Dân tộc:</label>
+                    <select name="nation" id="nation">
+                        <option value="kinh">Kinh</option>
+                        <option value="Dao">Dao</option>
+                        <option value="Thái">Thái</option>
+                        <option value="Bèo">Bèo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label for="dob">Ngày sinh</label>
+                <input type="date" disabled class="input-normal">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <div class="mt-3">
+                    <label for="name">Số CMND:</label>
+                    <div>
+                        <input type="text" disabled class="input-normal">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="mt-3">
+                    <label for="name">Email:</label>
+                    <div>
+                        <input type="text" disabled class="input-normal">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="mt-3">
+                    <label for="name">Số điện thoại:</label>
+                    <div>
+                        <input type="text" class="input-normal">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-3">
+                <div class="mt-3">
+                    <label for="name">Nơi Sinh:</label>
+                    <div>
+                        <select name="wasborn" id="wasborn">
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 mt-3">
+                <label for="ndkhk">Nơi đăng ký hộ khẩu thường trú (Tỉnh/Huyện/Xã)</label>
+                <div class="flex">
+                    <div>
+                        <select name="wasborn" id="wasborn">
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                        </select>
+                    </div>
+                    <div class="huyen">
+                        <select name="wasborn" id="wasborn">
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                        </select>
+                    </div>
+                    <div class="huyen">
+                        <select name="wasborn" id="wasborn">
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 mb-4">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-9">
+                <div class="mt-3">
+                    <label for="name">Nhập địa chỉ liên hệ:</label>
+                    <div>
+                        <textarea name="address" id="address" cols="10" rows="2" class="input-bigest"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="button-toggle" (click)="isOpenTab2 = !isOpenTab2">Thông tin đăng ký thi
+        <span><i class="fa " [ngClass]="!isOpenTab2 ? 'fa-caret-down' : 'fa-caret-up'"
+                style="float:right;padding-top: 3px;padding-left: 10px;"></i></span>
+    </button>
+    <div class="block" [ngClass]="{'show': isOpenTab2}">
+        <div class="row mt-3">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5 flex">
+                <div>
+                    <label for="datotnghiep">Thí sinh tự do chưa tốt nghiệp THPT</label>
+                </div>
+                <div class="ml-2">
+                    <input type="radio" class="radio-square" name="totnghiep">
+                </div>
+            </div>
+            <div class="col-sm-5 flex">
+                <div>
+                    <label for="chuatotnghiep">Thí sinh tự do đã tốt nghiệp THPT</label>
+                </div>
+                <div class="ml-2">
+                    <input type="radio" class="radio-square" name="totnghiep">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-5 flex">
+                <div>
+                    <label for="useResultTest">Thí sinh sử dụng kết quả thi để xét tuyển ĐH, CĐ, TC</label>
+
+                </div>
+                <div class="ml-2">
+                    <input type="checkbox" class="check-square" name="useResultTest">
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+                <div class="mt-3">
+                    <label for="name">Nơi đăng ký dự thi:</label>
+                    <div>
+                        <select name="wasborn" id="wasborn">
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="mt-3">
+                    <label for="name">Nơi đăng ký dự thi:</label>
+                    <div>
+                        <select name="highSchool" id="highSchool">
+                            <option value="THPT Trần Đăng Ninh">THPT Trần Đăng Ninh</option>
+                            <option value="THPT Ứng Hòa A">THPT Ứng Hòa A</option>
+                            <option value="THPT Mỹ Đức A">THPT Mỹ Đức A</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sm-3">
+
+            </div>
+            <div class="col-sm-3">
+                <div class="mt-3">
+                    <label for="name">Khu vực tuyển sinh:</label>
+                    <div>
+                        <select name="wasborn" id="wasborn">
+                            <option value="KV3">KV3</option>
+                            <option value="KV2">KV2</option>
+                            <option value="KV2-NT">KV2-NT</option>
+                            <option value="KV1">KV1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="mt-3">
+                    <label for="name">Thí sinh thuộc đối tượng ưu tiên:</label>
+                    <div>
+                        <select name="wasborn" id="wasborn">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-left:40px">
+            Đăng ký bài thi môn thi:
+
+        </div>
+        <div style="margin-left:60px">
+            Đăng ký bài thi:
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Toán </div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Văn </div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">KHTN </div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">KHXH </div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-4 flex">
+                    <div class="mr-3">Ngoại Ngữ </div>
+                    <div><select class="custom-select selectLanguage ml-2" id="inputGroupSelect02">
+                            <option value="">Chọn</option>
+                            <option value="english">Tiếng Anh</option>
+                            <option value="russian">Tiếng Nga</option>
+                            <option value="french">Tiếng Pháp</option>
+                            <option value="chinese">Tiếng Trung</option>
+                            <option value="german">Tiếng Đức</option>
+                            <option value="japanese">Tiếng Nhật</option>
+                        </select> </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-left:60px;margin-top: 15px;">
+            Đăng ký môn thi thành phần trong bài thi tổ hợp(chỉ dành cho thí sinh tự do không chọn bài thi tổ hợp)
+        </div>
+        <div class="container mb-4">
+            <div class="row">
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Vật Lý </div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Hóa Học </div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Sinh Học</div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Lịch Sử</div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Địa lý</div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">GDCD</div>
+                    <div><input type="checkbox" class="check-square"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button class="button-toggle" (click)="isOpenTab3 = !isOpenTab3">Thông tin xét tốt nghiệp THPT <small>(thí sinh đã
+            tốt nghiệp bỏ qua phần này)</small>
+        <span><i class="fa " [ngClass]="!isOpenTab3 ? 'fa-caret-down' : 'fa-caret-up'"
+                style="float:right;padding-top: 3px;padding-left: 10px;"></i></span>
+    </button>
+    <div class="block" [ngClass]="{'show': isOpenTab3}">
+        <div class="row mt-3">
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-9">
+                Đăng ký miễn thi ngoại ngữ: <small>(thí sinh ghi rõ chứng chỉ đủ điều kiện theo quy định hoặc ghi rõ là
+                    thành viên của đội tuyển quốc gia dự thi Olympic môn ngoại ngữ để được miễn thi)</small>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-6">
+                <div>
+                    <label for="name">Tên chứng chỉ/thành viên đội tuyển quốc gia:</label>
+                    <div>
+                        <input type="text" class="input-normal">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div>
+                    <label for="name">Số điểm:</label>
+                    <div>
+                        <input type="text" class="input-small">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-8">
+                Đăng ký bảo lưu điểm <small>(Thí sinh ghi rõ số điểm bảo lưu)</small>
+            </div>
+        </div>
+        <div class="container mb-4 mt-1">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Toán </div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Ngữ Văn </div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Ngoại ngữ</div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Vật lý</div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Hóa học</div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Sinh Học </div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Lịch Sử </div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">Địa Lý</div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+                <div class="col-sm-2 flex">
+                    <div class="mr-3">GDCD</div>
+                    <div><input type="text" class="input-point"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button class="button-toggle" (click)="isOpenTab4 = !isOpenTab4">Thông tin đăng ký nguyện vọng
+        <span><i class="fa " [ngClass]="!isOpenTab4 ? 'fa-caret-down' : 'fa-caret-up'"
+                style="float:right;padding-top: 3px;padding-left: 10px;"></i></span>
+    </button>
+    <div class="block" [ngClass]="{'show': isOpenTab4}">
+        <hr>
+        <div class="year">
+            Năm tuyển sinh: {{ currentYear }}
+        </div>
+        <br>
+        <br>
+        <hr>
+        <div class="row mt-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-9 block-table">
+                <table class="table table-bordered">
+                    <thead class="thead-light po-fixed">
+                        <tr>
+                            <th scope="col" class="small-col">Thứ tự NV</th>
+                            <th scope="col" class="bigest-col">Tên trường đại học</th>
+                            <th scope="col" class="biggest-col">Tên ngành</th>
+                            <th scope="col" class="small-col">Tổ hợp môn</th>
+                            <th scope="col" class="smallest-col">act</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let stu of students">
+                            <td scope="col" class="small-col">  </td>
+                            <td scope="col" class="bigest-col">{{ stu.name }}</td>
+                            <td scope="col" class="bigest-col">{{ stu.status }}</td>
+                            <td scope="col" class="small-col">{{ stu.status }}</td>
+                            <td scope="col" class="smallest-col"> <i class="fa fa-eye"></i> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

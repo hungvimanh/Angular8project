@@ -1,1 +1,74 @@
-<p>univer-admistion works!</p>
+<div class="container-fluid">
+        <div class="tittle mt-4">
+            <div class="tite">Thông tin các ngành</div>
+            <div *ngIf="isAdmin">
+                <button class="btn btn-primary button-adde" (click)="showModal = true">+Thêm</button>
+            </div>
+        </div>
+        <hr>
+        <div class="mt-4 mb-2 ml-5">
+            <Label>Tìm kiếm trường:</Label>
+            <input type="text" placeholder="nhập tên trường" id="inputSearchSchool">
+            <button class="btn btn-outline-primary " id="search">Tìm kiếm</button>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-3 colSort">
+                <strong>Sắp xếp theo mã trường</strong>
+                <br>
+                <select name="sort" id="sortName" class="mt-2">
+                    <option selected>--Sắp xếp trường--</option>
+                    <option value="asc">Sắp xếp từ A -> Z</option>
+                    <option value="desc">Sắp xếp từ Z -> A</option>
+                </select>
+                <br>
+                <button class="btn btn-outline-primary mt-2" id="sort">Sắp xếp</button>
+            </div>
+            <div class="col-sm-7" id="scroll">
+                <table class="table table-bordered" >
+                    <thead class="thead-light header">
+                        <tr>
+                            <th scope="col" class="stt">Mã trường</th>
+                            <th scope="col">Tên trường Cao Đẳng - Đại Học</th>
+                            <th scope="col" *ngIf="isAdmin">act</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let univer of univers">
+                            <td scope="row">{{ univer.code }}</td>
+                            <td> {{ univer.name }}</td>
+                            <td scope="col" class="act-col" *ngIf="isAdmin"><i class="fa fa-trash" style="color:red ; cursor: pointer;"></i></td>
+                        </tr> 
+                    </tbody>
+                </table>
+    
+            </div>
+    
+            <div class="col-sm-2">
+    
+            </div>
+        </div>
+        <div class="modal-university" [ngClass]="{'show': showModal}">
+                <div class="modal-university-content">
+                    <div class="close" (click)="showModal = false">+</div>
+                    <div class="tittle-modal">Thêm trường mới </div>
+                    <hr>
+                    <div class="mt-2">
+                        <div class="code-university">
+                                <label for="code"> Mã trường </label>
+                                <div>
+                                    <input type="text" class="inputPopup">
+                                </div>
+                        </div>
+                        <div class="name-university">
+                                <label for="code"> Tên trường </label>
+                                <div>
+                                    <input type="text" class="inputPopup">
+                                </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn btn-primary submit">Gửi</button>
+                    </div>
+                </div>
+            </div>
+    </div>

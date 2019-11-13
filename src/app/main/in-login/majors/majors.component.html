@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <br>
+    <div class="tittle">
+        <div class="tite">Thông tin các ngành</div>
+        <div>
+            <button class="btn btn-primary button-adde" (click)="showModal = true">+Thêm</button>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row mt-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <label style="font-weight:bold">Nhập tên ngành:</label>
+                <input type="text" class="inputMajor" placeholder="enter major">
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-outline-primary" >Tìm kiếm</button>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                Quảng cáo here
+            </div>
+        </div>
+    <div class="row mt-3">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-8 block-major">
+            <table class="table table-bordered ">
+                <thead class="thead-light po-fixed">
+                    <tr>
+                        <th scope="col" class="majorCode">Mã ngành</th>
+                        <th scope="col" class="majorName">Tên ngành</th>
+                        <th scope="col" class="majorAct">Xóa</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let major of majors">
+                        <td class="majorCode"> {{ major.majorCode}}</td>
+                        <td class="majorName"> {{major.majorName}} </td>
+                        <td scope="col" class="majorAct"><i class="fa fa-trash" style="color:red ; cursor: pointer;"></i></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+    <div class="modal-major" [ngClass]="{'show': showModal}">
+            <div class="modal-major-content">
+                <div class="close" (click)="showModal = false">+</div>
+                <div class="tittle-modal">Thêm ngành mới:</div>
+                <hr>
+                <div class="mt-2">
+                    <div class="code-major">
+                            <label for="code"> Mã ngành </label>
+                            <div>
+                                <input type="text" class="inputPopup">
+                            </div>
+                    </div>
+                    <div class="name-major">
+                            <label for="code"> Tên ngành </label>
+                            <div>
+                                <input type="text" class="inputPopup">
+                            </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-primary submit">Gửi</button>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="container-fluid">
+    <div class="title">
+        <div class="name-title">
+            Danh Sách Thí Sinh
+        </div>
+        <div class="button-right">
+            <button class="btn btn-primary button-add" (click)="showModalCreate = true"> + thêm </button>
+            <button class="btn btn-primary button-add" type="file"> + nhập excel</button>
+            <div></div>
+        </div>
+    </div>
+    <div class="mt-4 mb-2 ml-5">
+        <Label>Số CMND:</Label>
+        <input type="text" placeholder="nhập số CMND" id="inputSearchSchool">
+        <button class="btn btn-outline-primary " id="search">Tìm kiếm</button>
+        <button class="btn btn-success duyettat">Duyệt tất cả</button>
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm-12 block">
+            <table class="table table-bordered">
+                <thead class="thead-light po-fixed">
+                    <tr>
+                        <th scope="col" class="big-col">Số CMND</th>
+                        <th scope="col" class="bigest-col">Họ tên</th>
+                        <th scope="col" class="smallest-col">Giới tính</th>
+                        <th scope="col" class="big-col">Ngày sinh</th>
+                        <th scope="col" class="big-col">Tỉnh/TP</th>
+                        <th scope="col" class="bigest-col">Trường THPT</th>
+                        <th scope="col" class="small-col">Trạng thái</th>
+                        <th scope="col" class="smallest-col">act</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stu of students">
+                        <td scope="col" class="big-col">{{ stu.identify }}</td>
+                        <td scope="col" class="bigest-col">{{ stu.name }}</td>
+                        <td scope="col" class="smallest-col">{{ stu.gender }}</td>
+                        <td scope="col" class="big-col">{{ stu.dob }}</td>
+                        <td scope="col" class="big-col">{{ stu.province }}</td>
+                        <td scope="col" class="bigest-col">{{ stu.highSchool }}</td>
+                        <td scope="col" class="small-col">{{ stu.status }}</td>
+                        <td scope="col" class="smallest-col"> <i class="fa fa-eye"></i> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-create" [ngClass]="{'show':showModalCreate}">
+        <div class="modal-create-content">
+            <div class="close" (click)="showModalCreate = false">+</div>
+            <div class="title-modal">Thêm thí sinh</div>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1">
+
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="name">Họ và tên</label>
+                        <div class="mb-2">
+                            <input type="text" class="input-create">
+                        </div>
+                        <label for="identify">Số CMND</label>
+                        <div class="mb-2">
+                            <input type="text" class="input-create">
+                        </div>
+                        <label for="identify">Email</label>
+                        <div>
+                            <input type="text" class="input-create">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="gender">Giới tính</label>
+                        <div class="flex mb-2">
+                            <div>
+                                <label for="male">Nam</label>
+                                <input type="radio" name="gender" class="ml-1" >
+                            </div>
+                            <div class="ml-4">
+                                <label for="female">Nữ</label>
+                                <input type="radio" name="gender" class="ml-1">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="dob">Ngày sinh</label>
+                            <div>
+                                    <input type="date" class="input-date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-primary submit">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,67 @@
-<p>benchmark works!</p>
+<div class="container-fluid">
+        <br>
+        <div class="title">
+            Tra cứu điểm chuẩn các trường Cao Đẳng - Đại Học
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2 col-left">
+                <div class="mt-2">
+                    <strong>Khoảng điểm trong: </strong>
+                </div>
+                <div class="mt-2">
+                    <strong>Từ: </strong>
+                    <input type="text" class="inputPoint" id="begin">
+                </div>
+                <div class="mt-2">
+                    <strong>Đến: </strong>
+                    <input type="text" class="inputPoint">
+                </div>
+                <div class="mt-2">
+                    <strong>Khối:</strong>
+                    <select name="khoi" id="khoi" class="select">
+                        <option *ngFor="let khoi of khois" 
+                        
+                        > {{ khoi }} </option>
+                        <!-- [ngValue]="khoi" -->
+                    </select>
+                </div>
+                <div class="mt-2">
+                    <strong>Năm:</strong>
+                    <select name="year" id="year" class="select">
+                        <option *ngFor="let year of years" > {{ year }} </option>
+                        <!-- [ngValue]="year" -->
+                    </select>
+                </div>
+                <div class="mt-4 ml-2">
+                    <button class="btn btn-outline-primary">
+                        Tìm kiếm
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-8 block">
+                <table class="table table-bordered">
+                    <thead class="thead-light po-fixed">
+                        <tr>
+                            <th scope="col" class="big-col">Tên trường</th>
+                            <th scope="col" class="big-col">Tên ngành</th>
+                            <th scope="col" class="small-col">Điểm chuẩn</th>
+                            <th scope="col" class="big-col">Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let univer of univers">
+                            <td class="big-col"> {{ univer.name }}</td>
+                            <td class="big-col"> {{ univer.major }} </td>
+                            <td scope="col" class="small-col"> {{ univer.benchmark }} </td>
+                            <td scope="col" class="big-col">{{ univer.note }}</td>
+                        </tr>
+    
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-2">
+                quảng cáo here
+            </div>
+        </div>
+    </div>

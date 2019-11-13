@@ -11,15 +11,19 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <label style="font-size: 18px; padding-top: 7px; color: antiquewhite; margin-right: 10px;"> Xin Chao </label>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="currentUser; else loginNow">
             <div class="right-menu">
-                <button class="btn btn-outline-primary dropdown extra" >Minh Khang <i class="fa fa-user-circle"></i></button>
+                <button class="btn btn-outline-primary dropdown extra" (click)="navigateToProfile()" >{{ currentUser.lastName }} <i class="fa fa-user-circle"></i></button>
                 <div class="dropdown-auth">
-                  <button class="button-custom btn btn-outline-info"> Đổi mật khẩu <i class="fa fa-key"></i> </button>
                   <button class="button-custom btn btn-outline-info" (click)="logout()"> Đăng xuất <i class="fa fa-sign-out"></i> </button>
                 </div>
             </div>
           </li>
+          <ng-template #loginNow>
+            <li class="nav-item mt-2" >
+                <a href="login" style="height: 25px;margin-top:15px;font-size: 16px;">( Đăng nhập )</a>
+            </li>
+          </ng-template>
         </ul>
       </div>
     </div>
