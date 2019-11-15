@@ -4,58 +4,56 @@ import { BenchmarkServiceService } from './benchmark-service.service';
 import { subjectGroup, benchmark } from './benchmark';
 import { FormGroup,FormArray,FormBuilder,FormControl, Validators } from '@angular/forms'
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-benchmark',
   templateUrl: './benchmark.component.html',
   styleUrls: ['./benchmark.component.less']
 })
 export class BenchmarkComponent implements OnInit {
-  public khoi : subjectGroup;
   public subject_groups : subjectGroup[];
-  public allRecord : benchmark;
-  public allRecords : benchmark[];
+  public allRecords :benchmark[];
   constructor(private benchmarkService : BenchmarkServiceService, private fb : FormBuilder) { }
 
   
 
   ngOnInit() {
+    let abc = new subjectGroup()
+    abc.code = "T02"
+    this.benchmarkService.getSubjectGroup(abc).subscribe(
+      (data) =>{
+        this.subject_groups = data;
+      }
+    )
 
-    const univer = new benchmark();
+    let bcd = new benchmark()
+     this.benchmarkService.getBenmarkTable(bcd).subscribe(
+       (data)=>{
+         this.allRecords = data;
+       }
+     )
+  //   const univer = new benchmark();
 
-    this.benchmarkService.getBenmarkTable(univer)
-      .subscribe(data => { this.allRecords = data });
+  //   this.benchmarkService.getBenmarkTable(univer)
 
-      const post = new subjectGroup()
-      post.code = 'T02';
+  //     const post = new subjectGroup()
+  //     post.code = 'T02';
 
-      this.benchmarkService.getSubjectGroup(post)
-      .subscribe(data => { this.subject_groups = data });
+  //     this.benchmarkService.getSubjectGroup(post)
+  //     .subscribe(data => { this.subject_groups = data });
 
 
+  // }
+  
+  // aboutScore = this.fb.group (
+  //   {
+  //     benchmarkLow : ['',[Validators.required]],
+  //     benchmarkHigh : ['',Validators.required],
+  //     year : ['',Validators.required]
+  //   }
+
+  // )
   }
-  aboutScore = this.fb.group (
-    {
-      benchmarkLow : ['',[Validators.required]],
-      benchmarkHigh : ['',Validators.required],
-      year : ['',Validators.required]
-    }
-  )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
