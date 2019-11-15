@@ -4,6 +4,7 @@ import { UniverAdmistionComponent } from './univer-admistion/univer-admistion.co
 import { BenchmarkComponent } from './benchmark/benchmark.component';
 import { OutLoginRoutingModule } from './out-login.routing';
 import { UniverDetailComponent } from './univer-detail/univer-detail.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { UniverDetailComponent } from './univer-detail/univer-detail.component';
   ],
   imports: [
     CommonModule,
-    OutLoginRoutingModule
+    OutLoginRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class OutLoginModule { }

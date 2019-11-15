@@ -20,9 +20,9 @@
                 <div class="mt-2">
                     <strong>Khối:</strong>
                     <select name="khoi" id="khoi" class="select">
-                        <option *ngFor="let khoi of khois" 
+                        <option *ngFor="let khoi of subject_groups" 
                         
-                        > {{ khoi }} </option>
+                        > {{ khoi.code }} </option>
                         <!-- [ngValue]="khoi" -->
                     </select>
                 </div>
@@ -50,11 +50,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let univer of univers">
-                            <td class="big-col"> {{ univer.name }}</td>
-                            <td class="big-col"> {{ univer.major }} </td>
-                            <td scope="col" class="small-col"> {{ univer.benchmark }} </td>
-                            <td scope="col" class="big-col">{{ univer.note }}</td>
+                        <tr *ngFor="let record of allRecords">
+                            <td class="big-col"> {{ record.universityName }}</td>
+                            <td class="big-col"> {{ record.majorsname }} </td>
+                            <td scope="col" class="small-col"> {{ record.benchmark }} </td>
+                            <td scope="col" class="big-col">{{ record.descreption }}</td>
                         </tr>
     
                     </tbody>
