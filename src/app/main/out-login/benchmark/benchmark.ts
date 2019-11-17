@@ -18,3 +18,9 @@ export class subjectGroup {
     code: string;
     name: string;
 }
+export class AboutScore {
+    benchmarkLow : number;
+    benchmarkHigh : number;
+    subjectGroupCode : string;
+    year : string;
+}

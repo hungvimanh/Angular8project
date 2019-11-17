@@ -7,17 +7,16 @@
     </div>
     <hr>
     <br>
-    <div class="row">
+    <div class="row" [formGroup]="searchCode">
             <div class="col-sm-1"></div>
             <div class="col-sm-5">
                 <label style="font-weight:bold">Nhập tên tổ hợp môn:</label>
-                <input type="text" class="inputMajor" placeholder="nhập khối thi">
+                <input type="text" class="inputMajor" placeholder="nhập tổ hợp" formControlName="code">
             </div>
-            <div class="col-sm-2">
-                <br>
-                <button class="btn btn-outline-primary mt-2" >Tìm kiếm</button>
+            <div class="col-sm-2 ml-4">
+                <button class="btn btn-outline-primary" (click)="filterSearchCode()" >Tìm kiếm</button>
             </div>
-            <div class="col-sm-2"></div>
+            <div class="col-sm-1"></div>
             <div class="col-sm-2">
                 Quảng cáo here
             </div>
@@ -36,10 +35,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let khoi of khois">
+                    <tr *ngFor="let khoi of khois;let i = index">
                         <td class="majorCode"> {{ khoi.code}}</td>
-                        <td class="majorName"> {{khoi.subjects}} </td>
-                        <td scope="col" class="majorAct"><i class="fa fa-trash" style="color:red ; cursor: pointer;"></i></td>
+                        <td class="majorName"> {{khoi.name}} </td>
+                        <td scope="col" class="majorAct"><i class="fa fa-trash" style="color:red ; cursor: pointer;"
+                             (click)="deleteSG(i,khoi.id)"></i></td>
                     </tr>
 
                 </tbody>

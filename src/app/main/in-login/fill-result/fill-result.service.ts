@@ -1,49 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { benchmark, subjectGroup, AboutScore } from './benchmark'
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { Student, Score } from './fill-result';
 import { retry, catchError } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
-export class BenchmarkServiceService {
-
-  private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+export class FillResultService {
   private _url_base = "https://localhost:5001/api/TF"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8'
     })
   };
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
   
-  getBenmarkTable(benmark): Observable<benchmark[]>{
-    return this.http.post<benchmark[]>(this._url_base + '/university-majors/list',JSON.stringify(benmark),
+  getStudentByIdentify(univer): Observable<Student>{
+    return this.http.post<Student>(this._url_base + '/ad/student/get-by-identify',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
-  getMajorsInAboutScore(inScore): Observable<AboutScore[]>{
-    return this.http.post<AboutScore[]>(this._url_base + '/university-majors/list',JSON.stringify(inScore),
+  SubmitScore(univer): Observable<Score>{
+    return this.http.post<Score>(this._url_base + '/ad/student/mark-input',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
-
-  getSubjectGroup(khoi):Observable<subjectGroup[]>{
-    return this.http.post<subjectGroup[]>(this._url_base + '/subject-group/list', JSON.stringify(khoi),
-    this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.errorHandler)
-      );
-      
-  }
-
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

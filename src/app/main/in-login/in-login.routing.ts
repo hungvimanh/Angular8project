@@ -7,6 +7,8 @@ import { FillResultComponent } from './fill-result/fill-result.component';
 import { MajorsComponent } from './majors/majors.component';
 import { ListStudentComponent } from './list-student/list-student.component';
 import { SubjectCombinationComponent } from './subject-combination/subject-combination.component';
+import { UniversityComponent } from './university/university.component';
+import { UniversityDetailAdminComponent } from './university-detail-admin/university-detail-admin.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,9 @@ const routes: Routes = [
         { path: 'fill-result',component:FillResultComponent},
         { path: 'majors',component:MajorsComponent },
         { path: 'list-student',component: ListStudentComponent },
-        { path: 'subject-combination',component: SubjectCombinationComponent }
+        { path: 'subject-combination',component: SubjectCombinationComponent },
+        { path: 'university',component:UniversityComponent },
+        { path: 'uni-detail-admin',component:UniversityDetailAdminComponent },
     ],
   },
 ];

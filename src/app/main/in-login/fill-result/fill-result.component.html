@@ -4,20 +4,20 @@
     </div>
     <div class="row mt-4">
         <div class="col-sm-2"></div>
-        <div class="col-sm-3 fill-iden">
+        <div class="col-sm-3 fill-iden" [formGroup]="searchIdentify">
             <label for="identify">Nhập số cmnd thí sinh:</label>
             <div>
-                <input type="text" class="inputText">
+                <input type="text" class="inputText" formControlName="identify" (keydown.enter)="filterSearchIdentify()">
             </div>
         </div>
         <div class="col-sm-1">
-            <button class="btn btn-outline-primary button-send">Gửi</button>
+            
         </div>
         <div class="col-sm-3">
             <div class="name">
                 <label for="name">Họ và tên:</label>
                 <div class="info">
-                    Đinh Minh Khang
+                    {{ student.name }}
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
             <div class="name">
                 <label for="dob">Ngày sinh:</label>
                 <div class="info">
-                    11/23/1999
+                    {{ transferDate(student.dob) }}
                 </div>
             </div>
         </div>
@@ -38,10 +38,10 @@
         <div class="col-sm-6">
             <div class="name">
                 <label for="address">
-                    Quê quán
+                    Email
                 </label>
                 <div class="info">
-                    Hoàng dương sơn công ứng hòa hà nội
+                    {{ student.email }}
                 </div>
             </div>
         </div>
@@ -50,45 +50,45 @@
         Nhập điểm thi
     </div>
 
-    <div class="row mt-5">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-1">
-            Toán: 
-        </div>
-        <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-        <div class="col-sm-1"> Ngữ văn:  </div>
-        <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-        <div class="col-sm-2"> Ngoại Ngữ: </div>
-        <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-    </div>
-    <div class="row  mt-3">
+    <div >
+        <div class="row mt-5">
             <div class="col-sm-2"></div>
-            <div class="col-sm-1">
-                Vật lý: 
-            </div>
+            <div class="col-sm-1">Toán: </div>
             <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-            <div class="col-sm-1">Hóa học :  </div>
+            <div class="col-sm-1"> Ngữ văn:  </div>
             <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-            <div class="col-sm-2"> Sinh học: </div>
+            <div class="col-sm-2"> Ngoại Ngữ: </div>
             <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-    </div>
-    <div class="row mt-3">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-1">
-                Sử: 
-            </div>
-            <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-            <div class="col-sm-1"> Địa lý:  </div>
-            <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-            <div class="col-sm-2"> Giáo dục công dân: </div>
-            <div class="col-sm-1"><input type="text" class="inputPoint"></div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-sm-5">
-
         </div>
-        <div class="col-sm-2">
-                <button class="btn btn-primary button-end"> Xác Nhận </button>
+        <div class="row  mt-3">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-1">
+                    Vật lý: 
+                </div>
+                <div class="col-sm-1"><input type="text" class="inputPoint"></div>
+                <div class="col-sm-1">Hóa học :  </div>
+                <div class="col-sm-1"><input type="text" class="inputPoint"></div>
+                <div class="col-sm-2"> Sinh học: </div>
+                <div class="col-sm-1"><input type="text" class="inputPoint"></div>
+        </div>
+        <div class="row mt-3">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-1">
+                    Sử: 
+                </div>
+                <div class="col-sm-1"><input type="text" class="inputPoint"></div>
+                <div class="col-sm-1"> Địa lý:  </div>
+                <div class="col-sm-1"><input type="text" class="inputPoint"></div>
+                <div class="col-sm-2"> Giáo dục công dân: </div>
+                <div class="col-sm-1"><input type="text" class="inputPoint"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-5">
+    
+            </div>
+            <div class="col-sm-2 submit"  >
+                    <button class="btn btn-primary button-end"> Xác Nhận </button>
+            </div>
         </div>
     </div>
 </div>

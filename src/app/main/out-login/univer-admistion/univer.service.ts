@@ -1,48 +1,46 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { benchmark, subjectGroup, AboutScore } from './benchmark'
-import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
+import { throwError, Observable } from 'rxjs';
+import { University } from './univer';
+
 @Injectable({
   providedIn: 'root'
 })
-export class BenchmarkServiceService {
-
-  private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+export class UniverService {
   private _url_base = "https://localhost:5001/api/TF"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8'
     })
   };
-  constructor(private http: HttpClient) { } 
-  
-  getBenmarkTable(benmark): Observable<benchmark[]>{
-    return this.http.post<benchmark[]>(this._url_base + '/university-majors/list',JSON.stringify(benmark),
+  constructor(private http: HttpClient) { }
+  getUniverTable(univer): Observable<University[]>{
+    return this.http.post<University[]>(this._url_base + '/university/list',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
-  getMajorsInAboutScore(inScore): Observable<AboutScore[]>{
-    return this.http.post<AboutScore[]>(this._url_base + '/university-majors/list',JSON.stringify(inScore),
+  getUniverSearch(univer): Observable<University[]>{
+    return this.http.post<University[]>(this._url_base + '/university/list',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
+    
   }
 
-  getSubjectGroup(khoi):Observable<subjectGroup[]>{
-    return this.http.post<subjectGroup[]>(this._url_base + '/subject-group/list', JSON.stringify(khoi),
+  getUniverSort(univer): Observable<University[]>{
+    return this.http.post<University[]>(this._url_base + '/university/list',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
-      
-  }
+    }
 
   errorHandler(error) {
     let errorMessage = '';

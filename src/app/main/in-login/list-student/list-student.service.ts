@@ -1,47 +1,52 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { benchmark, subjectGroup, AboutScore } from './benchmark'
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Student, StudentId } from './list-student';
+
 @Injectable({
   providedIn: 'root'
 })
-export class BenchmarkServiceService {
-
-  private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+export class ListStudentService {
   private _url_base = "https://localhost:5001/api/TF"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8'
     })
   };
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
   
-  getBenmarkTable(benmark): Observable<benchmark[]>{
-    return this.http.post<benchmark[]>(this._url_base + '/university-majors/list',JSON.stringify(benmark),
+  getListStudentTable(univer): Observable<Student[]>{
+    return this.http.post<Student[]>(this._url_base + '/ad/student/list',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
-  getMajorsInAboutScore(inScore): Observable<AboutScore[]>{
-    return this.http.post<AboutScore[]>(this._url_base + '/university-majors/list',JSON.stringify(inScore),
+  getSearch(univer): Observable<Student[]>{
+    return this.http.post<Student[]>(this._url_base + '/ad/student/list',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
-
-  getSubjectGroup(khoi):Observable<subjectGroup[]>{
-    return this.http.post<subjectGroup[]>(this._url_base + '/subject-group/list', JSON.stringify(khoi),
+  // getIdentifySearch(univer): Observable<Student[]>{
+  //   return this.http.post<Student[]>(this._url_base + '/ad/student/list',JSON.stringify(univer),
+  //   this.httpOptions)
+  //     .pipe(
+  //       retry(1),
+  //       catchError(this.errorHandler)
+  //     );
+  // }
+  deleteStudent(univer): Observable<StudentId>{
+    return this.http.post<StudentId>(this._url_base + '/ad/student/delete',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
-      
   }
 
   errorHandler(error) {

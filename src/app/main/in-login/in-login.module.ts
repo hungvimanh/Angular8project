@@ -8,12 +8,25 @@ import { FillResultComponent } from './fill-result/fill-result.component';
 import { MajorsComponent } from './majors/majors.component';
 import { ListStudentComponent } from './list-student/list-student.component';
 import { SubjectCombinationComponent } from './subject-combination/subject-combination.component';
-
+import { UniversityComponent } from './university/university.component';
+import { UniversityDetailAdminComponent } from './university-detail-admin/university-detail-admin.component';
+import { ReactiveFormsModule } from '@angular/forms'
 @NgModule({
-  declarations: [RegisterComponent, ProfileComponent, ResultComponent, FillResultComponent, MajorsComponent, ListStudentComponent, SubjectCombinationComponent],
+  declarations: [
+    RegisterComponent,
+    ProfileComponent, 
+    ResultComponent, 
+    FillResultComponent,
+    MajorsComponent,
+    ListStudentComponent,
+    SubjectCombinationComponent,
+    UniversityComponent,
+    UniversityDetailAdminComponent
+        ],
   imports: [
     CommonModule,
-    InLoginRoutingModule
+    InLoginRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class InLoginModule { }

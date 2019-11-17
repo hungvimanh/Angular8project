@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <div class="tittle mt-4">
         <div class="tite">Thông tin các Trường</div>
+        <div *ngIf="isAdmin">
+            <button class="btn btn-primary button-adde" (click)="showModal = true">+Thêm</button>
+        </div>
     </div>
     <hr>
     <div class="mt-4 mb-2 ml-5" [formGroup]="searchName">
@@ -25,14 +28,13 @@
                     <tr>
                         <th scope="col" class="stt">Mã trường</th>
                         <th scope="col">Tên trường Cao Đẳng - Đại Học</th>
-                        <!-- <th scope="col" *ngIf="isAdmin">act</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let univer of univers" (click)="toDetail(univer.id)">
                         <td scope="row">{{ univer.code }}</td>
                         <td> {{ univer.name }}</td>
-                        <!-- <td scope="col" class="act-col" *ngIf="isAdmin"><i class="fa fa-trash" style="color:red ; cursor: pointer;"></i></td> -->
+                        
                     </tr>
                 </tbody>
             </table>
@@ -41,6 +43,42 @@
 
         <div class="col-sm-2">
 
+        </div>
+    </div>
+    <div class="modal-university" [ngClass]="{'show': showModal}">
+        <div class="modal-university-content" [formGroup]="formCreateUniver">
+            <div class="close" (click)="showModal = false">+</div>
+            <div class="tittle-modal">Thêm trường mới </div>
+            <hr>
+            <div class="mt-2">
+                <div class="code-university">
+                    <label for="code"> Mã trường:  </label>
+                    <div>
+                        <input type="text" class="inputPopup" formControlName="code">
+                    </div>
+                </div>
+                <div class="name-university">
+                    <label for="code"> Tên trường:  </label>
+                    <div>
+                        <input type="text" class="inputPopup" formControlName="name">
+                    </div>
+                </div>
+                <div class="name-university">
+                    <label for="code"> Địa chỉ: </label>
+                    <div>
+                        <input type="text" class="inputPopup" formControlName="address">
+                    </div>
+                </div>
+                <div class="name-university">
+                    <label for="code"> Website:  </label>
+                    <div>
+                        <input type="text" class="inputPopup" formControlName="website">
+                    </div>
+            </div>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-primary submit" (click)="createUniver()">Gửi</button>
+            </div>
         </div>
     </div>
 </div>

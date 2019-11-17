@@ -9,10 +9,7 @@
             <div></div>
         </div>
     </div>
-    <div class="mt-4 mb-2 ml-5">
-        <Label>Số CMND:</Label>
-        <input type="text" placeholder="nhập số CMND" id="inputSearchSchool">
-        <button class="btn btn-outline-primary " id="search">Tìm kiếm</button>
+    <div class="mt-4 mb-2 ml-5" >
         <button class="btn btn-success duyettat">Duyệt tất cả</button>
     </div>
     <div class="row mt-3">
@@ -22,24 +19,42 @@
                     <tr>
                         <th scope="col" class="big-col">Số CMND</th>
                         <th scope="col" class="bigest-col">Họ tên</th>
-                        <th scope="col" class="smallest-col">Giới tính</th>
+                        <th scope="col" class="smaller-col">Giới tính</th>
                         <th scope="col" class="big-col">Ngày sinh</th>
                         <th scope="col" class="big-col">Tỉnh/TP</th>
                         <th scope="col" class="bigest-col">Trường THPT</th>
                         <th scope="col" class="small-col">Trạng thái</th>
                         <th scope="col" class="smallest-col">act</th>
                     </tr>
+                    <tr [formGroup]="search">
+                        <td scope="col" class="big-col"><input type="text" class="filter" (keydown.enter)="filterSearch()" formControlName="identify"></td>
+                        <td scope="col" class="bigest-col"> <input type="text" class="filter" (keydown.enter)="filterSearch()" formControlName="name"></td>
+                        
+                        <td scope="col" class="smaller-col"><select name="gender" id="gender" class="select" formControlName="gender">
+                            <option value="">--giới tính--</option>
+                            <option *ngFor="let gen of genderss" [value] = "gen.value"> {{ gen.abc }} </option>
+                        </select></td>
+                        <td scope="col" class="smaller-col"><input type="text" class="filter" (keydown.enter)="filterSearch()" formControlName="dob"></td>
+                        <td scope="col" class="big-col"><input type="text" class="filter" (keydown.enter)="filterSearch()" formControlName="provinceName"></td>
+                        <td scope="col" class="bigest-col"><input type="text" class="filter" (keydown.enter)="filterSearch()" formControlName="highSchoolName"></td>
+                        <td scope="col" class="smaller-col"><select name="khoi" id="khoi" class="select"formControlName="status" >
+                            <option value="">--status--</option>
+                            <option *ngFor="let sta of statuss" [value] = "sta.value" > {{ sta.name }} </option>
+                        </select></td>
+                        <td scope="col" class="smallest-col"></td>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let stu of students">
+                    <tr *ngFor="let stu of students;let i = index">
                         <td scope="col" class="big-col">{{ stu.identify }}</td>
                         <td scope="col" class="bigest-col">{{ stu.name }}</td>
-                        <td scope="col" class="smallest-col">{{ stu.gender }}</td>
-                        <td scope="col" class="big-col">{{ stu.dob }}</td>
-                        <td scope="col" class="big-col">{{ stu.province }}</td>
-                        <td scope="col" class="bigest-col">{{ stu.highSchool }}</td>
-                        <td scope="col" class="small-col">{{ stu.status }}</td>
-                        <td scope="col" class="smallest-col"> <i class="fa fa-eye"></i> </td>
+                        <td scope="col" class="smaller-col">{{ stu.gender? "nam":"nữ" }}</td>
+                        <td scope="col" class="big-col">{{ transferDate(stu.dob) }}</td>
+                        <td scope="col" class="big-col">{{ stu.provinceName }}</td>
+                        <td scope="col" class="bigest-col">{{ stu.highSchoolName }}</td>
+                        <td scope="col" class="small-col" >{{ transferStatus(stu.status) }}</td>
+                        <td scope="col" class="smallest-col"> <i class="fa fa-eye"></i> 
+                        <i class="fa fa-trash" style="color: red;margin-left:8px " (click)="deleteStudent(stu.id,i)"></i> </td>
                     </tr>
                 </tbody>
             </table>

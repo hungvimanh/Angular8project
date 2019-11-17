@@ -1,6 +1,11 @@
 <div class="container-fluid">
-    <div class="name-univer">
-        Thông tin trường
+    <div class="flex">
+        <div class="name-univer">
+            Thông tin trường
+        </div>
+        <div>
+            <button class="btn btn-danger button-delete" (click)="deleteUniver(univer.id)">Xóa Trường</button>
+        </div>
     </div>
     <div class="row mt-2 pl-3">
         <div class="col-sm-4 info-univer">
@@ -25,7 +30,7 @@
             Các ngành tuyển sinh trong trường
         </div>
 
-        <div *ngIf="isAdmin">
+        <div >
             <button class="btn btn-primary button-add" (click)="showModalCreate = true">+ thêm</button>
         </div>
 
@@ -41,53 +46,26 @@
                         <th scope="col">Tổ hợp môn</th>
                         <th scope="col">Điểm chuẩn</th>
                         <th scope="col">chỉ tiêu</th>
-                        
+                        <th scope="col" class="act"> act </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let major of univer.university_Majors; let i = index" >
+                    <tr *ngFor="let major of univer.university_Majors ; let i = index" >
                         <td scope="row">  {{ i + 1 }}</td>
                         <td> {{ major.majorsCode}}</td>
                         <td> {{major.majorsName}} </td>
                         <td>{{major.subjectGroupCode}}</td>
                         <td>{{major.benchmark}}</td>
                         <td>{{major.quantity}}</td>
-                       
+                        <td class="act"> <i class="fa fa-edit" style="color: orange" (click)="updateMajor(major)"></i> 
+                            <i class="fa fa-trash pl-2" style="color: red" (click)="deleteMajor(major.majorsId,major.subjectGroupId,major.year,i)"></i>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <!-- <ng-template #admin>
-    <div class="row mt-2 ">
-            <div class="col-sm-12 block-major">
-                <table class="table table-bordered">
-                    <thead class="thead-light po-fixed">
-                        <tr>
-                            <th scope="col" class="stt">STT</th>
-                            <th scope="col">Mã ngành</th>
-                            <th scope="col">Tên ngành</th>
-                            <th scope="col">Tổ hợp môn</th>
-                            <th scope="col">Điểm chuẩn</th>
-                            <th scope="col">Chỉ tiêu</th>
-                            <th scope="col" class="act"> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let major of univer.university_Majors; let index as i" >
-                            <th scope="row">{{ i }}</th>
-                            <td> {{ major.majorsCode}}</td>
-                            <td> {{major.majorsName}} </td>
-                            <td>{{major.subjectGroupCode}}</td>
-                            <td>{{major.benchmark}}</td>
-                            <td>{{major.quantity}}</td>
-                            <td class="act"> <i class="fa fa-eye" (click)="updateMajor()"></i> </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </ng-template> -->
+    
     <div class="modal-create" [ngClass]="{'show':showModalCreate}">
         <div class="modal-create-content">
             <div class="close" (click)="showModalCreate = false">+</div>

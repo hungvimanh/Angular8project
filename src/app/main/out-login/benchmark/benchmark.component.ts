@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { khoi } from './benchmark';
 import { BenchmarkServiceService } from './benchmark-service.service';
-import { subjectGroup, benchmark } from './benchmark';
+import { subjectGroup, benchmark, AboutScore } from './benchmark';
 import { FormGroup,FormArray,FormBuilder,FormControl, Validators } from '@angular/forms'
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -19,7 +19,6 @@ export class BenchmarkComponent implements OnInit {
 
   ngOnInit() {
     let abc = new subjectGroup()
-    abc.code = "T02"
     this.benchmarkService.getSubjectGroup(abc).subscribe(
       (data) =>{
         this.subject_groups = data;
@@ -32,52 +31,63 @@ export class BenchmarkComponent implements OnInit {
          this.allRecords = data;
        }
      )
-  //   const univer = new benchmark();
 
-  //   this.benchmarkService.getBenmarkTable(univer)
-
-  //     const post = new subjectGroup()
-  //     post.code = 'T02';
-
-  //     this.benchmarkService.getSubjectGroup(post)
-  //     .subscribe(data => { this.subject_groups = data });
-
-
-  // }
-  
-  // aboutScore = this.fb.group (
-  //   {
-  //     benchmarkLow : ['',[Validators.required]],
-  //     benchmarkHigh : ['',Validators.required],
-  //     year : ['',Validators.required]
-  //   }
-
-  // )
   }
 
+  aboutScore = this.fb.group (
+    {
+      benchmarkLow : ['',[Validators.required]],
+      benchmarkHigh : ['',Validators.required],
+      subjectGroupCode : [''],
+      year : [''],
+    }
 
+  )
+  get benchmarkLow(){
+    return this.aboutScore.get("benchmarkLow");
+  }
+  get benchmarkHigh(){
+    return this.aboutScore.get("benchmarkHigh");
+  }
+  get subjectGroupCode(){
+    return this.aboutScore.get("subjectGroupCode");
+  }
+  get year(){
+    return this.aboutScore.get("year");
+  }
 
-  // khois = [
-  //   "A00","A01","A02","B00","b00","b01","b02","C00"
-  // ]
-  // years = [
-  //   "2019","2018","2017","2016","2015"
-  // ]
-  // univers = [
-  //   { name:"Đại học Công Nghệ",major: "Công nghệ thông tin", khoi:"A01" ,benchmark:"25.5",note:"có note gì đâu" },
-  //   { name:"Đại học Bách Khoa",major: "Điện tử viễn thông", khoi:"A01" ,benchmark:"24",note:"có note gì đâu" },
-  //   { name:"Đại học FPT",major: "Vật lý kĩ thuật", khoi:"A01" ,benchmark:"22",note:"có note gì đâu" },
-  //   { name:" Đại học Công Nghiệp ",major: "Công nghệ thông tin", khoi:"A01" ,benchmark:"25.5",note:"có note gì đâu" },
-  //   { name:" Đại học Lâm Nghiệp ",major: "Điện tử viễn thông", khoi:"A01" ,benchmark:"24",note:"có note gì đâu" },
-  //   { name:" Đại học Sư phạm Hà Nội ",major: "Vật lý kĩ thuật", khoi:"A01" ,benchmark:"22",note:"có note gì đâu" },
-  //   { name:" Đại học Ngoại Ngữ ",major: "Công nghệ thông tin", khoi:"A01" ,benchmark:"25.5",note:"có note gì đâu" },
-  //   { name:" Đại học Tự Nhiên ",major: "Điện tử viễn thông", khoi:"A01" ,benchmark:"24",note:"có note gì đâu" },
-  //   { name:" Đại học Giáo Dục ",major: "Vật lý kĩ thuật", khoi:"A01" ,benchmark:"22",note:"có note gì đâu" },
-  //   { name:" Đại học Kiến trúc ",major: "Công nghệ thông tin", khoi:"A01" ,benchmark:"25.5",note:"có note gì đâu" },
-  //   { name:" Đại học Xây Dựng ",major: "Điện tử viễn thông", khoi:"A01" ,benchmark:"24",note:"có note gì đâu" },
-  //   { name:" Đại học Thương Mại ",major: "Vật lý kĩ thuật", khoi:"A01" ,benchmark:"22",note:"có note gì đâu" },
-  //   { name:" Đại học Tài Chính ",major: "Công nghệ thông tin", khoi:"A01" ,benchmark:"25.5",note:"có note gì đâu" },
-  //   { name:" Đại học Thăng Long ",major: "Điện tử viễn thông", khoi:"A01" ,benchmark:"24",note:"có note gì đâu" },
-  //   { name :" Đại học Phương Đông ", major: "Vật lý kĩ thuật", khoi:"A01" ,benchmark:"22",note:"có note gì đâu" },
-  // ]
+  years = [
+    "2019","2018","2017","2016","2015"
+  ]
+  majorInAboutScore() {
+    if (this.aboutScore.valid) {
+      let bcd = new AboutScore();
+      bcd.benchmarkLow = this.aboutScore.get('benchmarkLow').value;
+      bcd.benchmarkHigh = this.aboutScore.get('benchmarkHigh').value;
+      bcd.subjectGroupCode  = this.aboutScore.get('subjectGroupCode').value;
+      bcd.year = this.aboutScore.get("year").value;
+     this.benchmarkService.getBenmarkTable(bcd).subscribe(
+       (data)=>{
+         this.allRecords = data;
+       }
+     )
+    }
+    else {
+       this.validateAllFields(this.aboutScore);
+    }
+  }
+
+  validateAllFields(form: FormGroup | FormArray) {
+    Object.keys(form.controls).forEach((field: string) => {
+      const control = form.get(field);
+      if (control instanceof FormArray) {
+        this.validateAllFields(control);
+      }
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFields(control);
+      }
+    });
+  }
 }

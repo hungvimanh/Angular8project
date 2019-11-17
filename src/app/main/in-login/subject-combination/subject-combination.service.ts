@@ -1,47 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { benchmark, subjectGroup, AboutScore } from './benchmark'
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { throwError, Observable } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import {  SubjectGroups, SubjectName, SubjectId } from './subject-combination';
+
 @Injectable({
   providedIn: 'root'
 })
-export class BenchmarkServiceService {
-
-  private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+export class SubjectCombinationService {
   private _url_base = "https://localhost:5001/api/TF"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8'
     })
   };
-  constructor(private http: HttpClient) { } 
-  
-  getBenmarkTable(benmark): Observable<benchmark[]>{
-    return this.http.post<benchmark[]>(this._url_base + '/university-majors/list',JSON.stringify(benmark),
-    this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.errorHandler)
-      );
-  }
-  getMajorsInAboutScore(inScore): Observable<AboutScore[]>{
-    return this.http.post<AboutScore[]>(this._url_base + '/university-majors/list',JSON.stringify(inScore),
-    this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.errorHandler)
-      );
-  }
+  constructor(private http: HttpClient) { }
 
-  getSubjectGroup(khoi):Observable<subjectGroup[]>{
-    return this.http.post<subjectGroup[]>(this._url_base + '/subject-group/list', JSON.stringify(khoi),
+  getSGTable(univer): Observable<SubjectGroups[]>{
+    return this.http.post<SubjectGroups[]>(this._url_base + '/subject-group/list',JSON.stringify(univer),
     this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
-      
+  }
+  getSGSearch(univer): Observable<SubjectGroups[]>{
+    return this.http.post<SubjectGroups[]>(this._url_base + '/subject-group/list',JSON.stringify(univer),
+    this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
+  }
+  deleteSG(univer): Observable<SubjectId>{
+    return this.http.post<SubjectId>(this._url_base + '/ad/subject-group/delete',JSON.stringify(univer),
+    this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
   }
 
   errorHandler(error) {

@@ -5,36 +5,46 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-2 col-left">
+            <div [formGroup]="aboutScore" class="col-sm-2 col-left">
                 <div class="mt-2">
                     <strong>Khoảng điểm trong: </strong>
                 </div>
                 <div class="mt-2">
                     <strong>Từ: </strong>
-                    <input type="text" class="inputPoint" id="begin">
+                    <input type="text" class="inputPoint" formControlName="benchmarkLow" id="begin">
+                    <div class="mt-1" *ngIf="(benchmarkLow.invalid && (benchmarkLow.dirty || benchmarkLow.touched))">
+                        <div class="alert alert-danger">
+                          benchmarkLow is required.
+                        </div>
+                      </div>
                 </div>
                 <div class="mt-2">
                     <strong>Đến: </strong>
-                    <input type="text" class="inputPoint">
+                    <input type="text" class="inputPoint" formControlName="benchmarkHigh">
+                    <div class="mt-1" *ngIf="(benchmarkHigh.invalid && (benchmarkHigh.dirty || benchmarkHigh.touched))">
+                        <div class="alert alert-danger">
+                          benchmarkHigh is required.
+                        </div>
+                      </div>
                 </div>
                 <div class="mt-2">
                     <strong>Khối:</strong>
-                    <select name="khoi" id="khoi" class="select">
-                        <option *ngFor="let khoi of subject_groups" 
-                        
-                        > {{ khoi.code }} </option>
+                    <select name="khoi" id="khoi" class="select" formControlName="subjectGroupCode">
+                        <option value="">--khối-- </option>
+                        <option *ngFor="let khoi of subject_groups" [value] = "khoi.code" > {{ khoi.code }} </option>
                         <!-- [ngValue]="khoi" -->
                     </select>
                 </div>
                 <div class="mt-2">
                     <strong>Năm:</strong>
-                    <select name="year" id="year" class="select">
-                        <option *ngFor="let year of years" > {{ year }} </option>
+                    <select name="year" id="year" class="select" formControlName="year">
+                        <option value="">--năm-- </option>
+                        <option *ngFor="let year of years" [value]="year" > {{ year }} </option>
                         <!-- [ngValue]="year" -->
                     </select>
                 </div>
                 <div class="mt-4 ml-2">
-                    <button class="btn btn-outline-primary">
+                    <button class="btn btn-outline-primary" (click)="majorInAboutScore()">
                         Tìm kiếm
                     </button>
                 </div>
@@ -52,9 +62,9 @@
                     <tbody>
                         <tr *ngFor="let record of allRecords">
                             <td class="big-col"> {{ record.universityName }}</td>
-                            <td class="big-col"> {{ record.majorsname }} </td>
-                            <td scope="col" class="small-col"> {{ record.benchmark }} </td>
-                            <td scope="col" class="big-col">{{ record.descreption }}</td>
+                            <td class="big-col"> {{ record.majorsName }} </td>
+                            <td class="small-col"> {{ record.benchmark }} </td>
+                            <td class="big-col">{{ record.descreption }}</td>
                         </tr>
     
                     </tbody>
