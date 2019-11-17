@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, AbstractCo
 import { Router } from '@angular/router';
 import { Student, Score } from './fill-result';
 const validateScore: ValidatorFn = (control: AbstractControl) : { [key : string]:  any } | null => {
-  if(/[+-]?([0-9]*[.])?[0-9]+/.test(control.value)){
+  if(/[+-]?([0-9]*[.])?[0-9]+/.test(control.value) || /^\d?$/.test(control.value)){
     return null;
   }
   return {
@@ -62,9 +62,11 @@ export class FillResultComponent implements OnInit {
     return str.substring(0,10);
   }
   sendScore(sudentId){
+    console.log(sudentId);
     if(this.formScore.valid){
+      // console.log('ahdhfshdkfjsahfdj');
       let bca = new Score();
-      bca.id = sudentId;
+      bca.studentId = sudentId;
       bca.maths = this.formScore.get("maths").value;
       bca.physics = this.formScore.get("physics").value;
       bca.chemistry = this.formScore.get("chemistry").value;
@@ -75,7 +77,7 @@ export class FillResultComponent implements OnInit {
       bca.literature = this.formScore.get("literature").value;
       bca.geography = this.formScore.get("geography").value;
 
-      if(bca.id != null && 
+      if(bca.studentId != null && 
        bca.maths <=10 && bca.maths >= 0 &&
        bca.physics <=10 && bca.physics >= 0 &&
        bca.literature <=10 && bca.literature >= 0 &&
@@ -85,20 +87,24 @@ export class FillResultComponent implements OnInit {
        bca.civicEducation <=10 && bca.civicEducation >= 0 &&
        bca.history <=10 && bca.history >= 0 &&
        bca.biology <=10 && bca.biology >= 0 
-        )
-        {
-        this._httpClient.SubmitScore(bca)
+      )
+      {
+      this._httpClient.SubmitScore(bca)
         .subscribe(
           (data)=>{
             this.abc = data
           }
         )
+          console.log('nhập đúng điểm rồi đấy')
+      }
+      else{
+        console.log('không so sánh được')
       }
     }
     else{
       this.validateAllFields(this.formScore)
+      // alert('Chưa có mã học sinh hoặc bạn nhập sai số điểm!')
     }
-      
   }
   validateAllFields(form: FormGroup | FormArray) {
     Object.keys(form.controls).forEach((field: string) => {

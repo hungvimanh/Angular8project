@@ -1,12 +1,12 @@
 export class Student{
-    id: string;
+    studentId: string;
     identify:string;
     name:string;
     email:string;
     dob:string;
 }
 export class Score{
-    id:string;
+    studentId :string;
     maths:number;
     physics:number;
     literature:number;
