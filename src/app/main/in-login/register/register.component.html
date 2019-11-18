@@ -3,7 +3,7 @@
         <div class="tite">Phiếu đăng ký nguyện vọng</div>
         <div>
             <button class="btn btn-primary button-adde">Đăng ký</button>
-            <button class="btn btn-warning button-add"> Chờ duyệt</button>
+            <button class="btn btn-warning button-add"> chờ duyệt</button>
         </div>
     </div>
     <hr>
@@ -88,11 +88,10 @@
                 <div class="mt-3">
                     <label for="name">Nơi Sinh:</label>
                     <div>
-                        <select name="wasborn" id="wasborn">
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                            <option value="Đà Nẵng">Đà Nẵng</option>
-                        </select>
+                        <ng-select class="big-select" [items]="provinces" bindLabel="name" placeholder="nơi sinh"
+                        (click)="getProvince()" [(ngModel)] = "proviceSelected0"
+                        >
+                        </ng-select>
                     </div>
                 </div>
             </div>
@@ -100,25 +99,19 @@
                 <label for="ndkhk">Nơi đăng ký hộ khẩu thường trú (Tỉnh/Huyện/Xã)</label>
                 <div class="flex">
                     <div>
-                        <select name="wasborn" id="wasborn">
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                            <option value="Đà Nẵng">Đà Nẵng</option>
-                        </select>
+                        <ng-select class="fix-select" [items]="provinces" bindLabel="name" placeholder="Tỉnh/Tp" 
+                        (click)="getProvince()" [(ngModel)] = "provinceSelected1">
+                        </ng-select>
                     </div>
                     <div class="huyen">
-                        <select name="wasborn" id="wasborn">
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                            <option value="Đà Nẵng">Đà Nẵng</option>
-                        </select>
+                        <ng-select class="fix-select" [items]="districts" bindLabel="name" placeholder="Quận/huyện"
+                        (click)="getDistrict()" [(ngModel)] = "districSelected1">
+                        </ng-select>
                     </div>
                     <div class="huyen">
-                        <select name="wasborn" id="wasborn">
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                            <option value="Đà Nẵng">Đà Nẵng</option>
-                        </select>
+                        <ng-select class="fix-select" [items]="towns" bindLabel="name" placeholder="Phường/thị xã"
+                        (click)="getTown()" [(ngModel)] = "townSelected1">
+                        </ng-select>
                     </div>
                 </div>
             </div>
@@ -180,12 +173,10 @@
                 <div class="mt-3">
                     <label for="name">Nơi đăng ký dự thi:</label>
                     <div>
-                        <select  name="wasborn" id="wasborn">
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                            <option value="Đà Nẵng">Đà Nẵng</option>
-                        </select>
-                        <!-- <app-single-select></app-single-select> -->
+                        <ng-select class="big-select" [items]="provinces" bindLabel="name" placeholder="Thành phố"
+                        (click)="getProvince()" [(ngModel)] = "provinceSelected2"
+                        >
+                        </ng-select>
                     </div>
                 </div>
             </div>
@@ -193,11 +184,10 @@
                 <div class="mt-3">
                     <label for="name">Nơi đăng ký dự thi:</label>
                     <div>
-                        <select name="highSchool" id="highSchool">
-                            <option value="THPT Trần Đăng Ninh">THPT Trần Đăng Ninh</option>
-                            <option value="THPT Ứng Hòa A">THPT Ứng Hòa A</option>
-                            <option value="THPT Mỹ Đức A">THPT Mỹ Đức A</option>
-                        </select>
+                        <ng-select class="big-select" [items]="highSchools" bindLabel="name" placeholder="Trường THPT"
+                        (click)="getHighSchool()" [(ngModel)] = "highSchoolSelected"
+                        >
+                        </ng-select>
                     </div>
                 </div>
             </div>
@@ -409,16 +399,14 @@
         <div class="year">
             Năm tuyển sinh: {{ currentYear }}
         </div>
-        <br>
-        <br>
         <hr>
         <div class="row mt-2">
             <div class="col-sm-1"></div>
-            <div class="col-sm-9 block-table">
+            <div class="col-sm-10 block-table">
                 <table class="table table-bordered">
                     <thead class="thead-light po-fixed">
                         <tr>
-                            <th scope="col" class="small-col">Thứ tự NV</th>
+                            <th scope="col" class="smaller-col">Thứ tự NV</th>
                             <th scope="col" class="bigest-col">Tên trường đại học</th>
                             <th scope="col" class="biggest-col">Tên ngành</th>
                             <th scope="col" class="small-col">Tổ hợp môn</th>
@@ -427,45 +415,33 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let wish of arrayWish;let i = index">
-                            <td scope="col" class="small-col"> {{ i+ 1  }}</td>
-                            <td scope="col" class="bigest-col"><select name="university" id="university" class="select"
+                            <td scope="col" class="smallest-col"> {{ i + 1  }}</td>
+                            <td scope="col" class="bigest-col">
+                                <ng-select class="table" [items]="universitys" bindLabel="name" (click)="getListUniver()" placeholder="Chọn trường học"
+                                [(ngModel)] = "univerSelected" >
+                                </ng-select>
+                            </td>
+                            <td scope="col" class="bigest-col">
+                                <ng-select class="table" [items]="majors" bindLabel="majorsName" (click)="getMajorOfUniver()" placeholder="Chọn ngành học"
+                                [(ngModel)] = "majorSelected" >
+                                </ng-select>
+                            </td>
+                            <td scope="col" class="small-col">
+                                <ng-select class="table" [items]="cities" bindLabel="name" placeholder="Chọn khối"
                                     >
-                                    <option value="">--trường--</option>
-                                    <option > </option>
-                                </select></td>
-                            <td scope="col" class="bigest-col"><select name="major" id="major" class="select"
-                                    >
-                                    <option value="">--ngành--</option>
-                                    <option > hi  </option>
-                                </select></td>
-                            <td scope="col" class="small-col"><select name="subject-group" id="subject-group" class="select"
-                                    >
-                                    <option value="">--khối--</option>
-                                    <option > </option>
-                                </select></td>
+                                </ng-select>
+                            </td>
                             <td scope="col" class="smallest-col"> <i class="fa fa-trash-o" style="color: red;" (click)="removeWish(i)
                         "></i> </td>
                         </tr>
 
                     </tbody>
                 </table>
-                <div style="margin-left:540px">
+                <div style="margin-left:490px;margin-bottom: 50px;">
                     <button class="btn btn-outline-success" (click)="addWish()">+ thêm</button>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div>
-        <label>Your first ng-select</label>
-        <ng-select class="custom" [items]="cities"
-                   bindLabel="name"
-                   placeholder="Select city"
-                   [(ngModel)]="selectedCity">
-        </ng-select>
-        <p>
-            Selected city: {{selectedCity | json}}
-        </p>
-        <hr />
+        
     </div>
 </div>
