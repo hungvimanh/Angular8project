@@ -13,7 +13,7 @@
           <label style="font-size: 18px; padding-top: 7px; color: antiquewhite; margin-right: 10px;"> Xin Chao </label>
           <li class="nav-item" *ngIf="currentUser; else loginNow">
             <div class="right-menu">
-                <button class="btn btn-outline-primary dropdown extra" (click)="navigateToProfile()" >{{ currentUser.lastName }} <i class="fa fa-user-circle"></i></button>
+                <button class="btn btn-outline-primary dropdown extra" (click)="navigateToProfile()" >{{ currentUser.username }} <i class="fa fa-user-circle"></i></button>
                 <div class="dropdown-auth">
                   <button class="button-custom btn btn-outline-info" (click)="logout()"> Đăng xuất <i class="fa fa-sign-out"></i> </button>
                 </div>

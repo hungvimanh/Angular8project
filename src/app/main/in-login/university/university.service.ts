@@ -59,7 +59,7 @@ export class UniversityService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
+    // console.log(errorMessage);
     return throwError(errorMessage);
   }
   handleError(error: HttpErrorResponse) {

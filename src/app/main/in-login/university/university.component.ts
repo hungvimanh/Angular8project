@@ -78,21 +78,22 @@ export class UniversityComponent implements OnInit {
 
      this._httpClient.createUniver(bcd).subscribe(
        (data)=>{
-         this.abc = data;
-       }
+         if(data){
+           this.abc = data;
+           console.log(data);
+           this.showModal = false;
+           alert('Tạo trường thành công');
+           this.univers.push(this.abc);
+         }
+       },
+        (Error)=>{
+          if(Error){
+            console.log("đây là error:"+ Error);
+            alert('Tạo trường không thành công!')
+            
+          }
+        }
       )
-      console.log(this.abc);
-      if(this.abc.errors.code != null){
-        this.univers.push(this.abc);
-        console.log(this.abc);
-        this.showModal = false;
-        //  alert("Tạo trường thành công!");
-      }
-      else{
-       this.showModal = false;
-        alert("Lỗi: "+bcd.errors.code);
-      }
-      
     }
     else {
        this.validateAllFields(this.formCreateUniver);
