@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { CommonModule } from '@angular/common';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
@@ -17,12 +17,15 @@ import { SidebarComponent } from './template/sidebar/sidebar.component'
 ;
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { MainComponent } from './main/main.component';
+
+
 @NgModule({
     imports: [
         BrowserModule,
+        CommonModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule,
+        appRoutingModule
     ],
     declarations: [
         AppComponent,
@@ -33,6 +36,7 @@ import { MainComponent } from './main/main.component';
         MainComponent,
         NavbarComponent,
         SidebarComponent
+        // SingleSelectComponent
      ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

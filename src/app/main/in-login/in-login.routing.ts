@@ -9,6 +9,7 @@ import { ListStudentComponent } from './list-student/list-student.component';
 import { SubjectCombinationComponent } from './subject-combination/subject-combination.component';
 import { UniversityComponent } from './university/university.component';
 import { UniversityDetailAdminComponent } from './university-detail-admin/university-detail-admin.component';
+// import { SelectSearchComponent } from './select-search/select-search.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
         { path: 'subject-combination',component: SubjectCombinationComponent },
         { path: 'university',component:UniversityComponent },
         { path: 'uni-detail-admin',component:UniversityDetailAdminComponent },
+        // { path: 'select',component:SelectSearchComponent}
     ],
   },
 ];
